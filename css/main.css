@@ -1,0 +1,1326 @@
+@charset "UFT-8";
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&family=Noto+Sans+KR:wght@300;700&family=Unna&display=swap');
+
+/*reset*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,
+code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,
+fieldset,form,label,legend,table,tbody,tfoot,thead,tr,th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+h1,h2,h3,h4,h5,
+h6 {
+    font-weight: 700;
+    font-size: inherit;
+}
+
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+a img {
+    border: none;
+}
+
+address,
+em,
+i {
+    font-style: normal;
+}
+
+a:focus {
+    outline: none
+}
+
+button:focus {
+    outline: none
+}
+
+/*layout*/
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: #000;
+    line-height: 1.4;
+}
+
+.wrap {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;  /*avoid scroll bar*/
+}
+
+.en {
+    font-family: 'Unna', serif;
+}
+
+.en_1 {
+    font-family: 'Maven Pro', sans-serif;
+}
+
+.menuWrap span {
+    display: block;
+}
+
+.menuWrap span b {
+    font-weight: normal;
+}
+
+/*menuOpen*/   
+.menuWrap {
+    width: 100%;
+    height: 100vh;  /* 보이는 화면에 100% 차도록 함 */
+    position: fixed;    /* 포지션 기준점  */
+    top: 0;
+    left: 0;
+    z-index: 100;  /* 우선순위로 보일수 있도록 함 */
+    background: #eee;
+    color: #000;
+    padding: 160px 200px 0 450px;
+    box-sizing: border-box; /* 패딩 줬으니까 box 사이즈에 포함시킴 */
+    overflow: hidden;
+}
+
+.menuWrap .close {
+    display: inline-block;
+    position: absolute;  /* position fixed기준으로 잡을것임  */
+    top: 5px;
+    left: 40px;
+    font-size: 16px;
+}
+
+.menuWrap .close img {
+    margin-right: 25px;
+}
+
+/*.menuWrap .menuWrap_left*/
+.menuWrap .menuWrap_left {
+    float: left;
+    width: 50%;
+}
+
+.menuWrap .menuWrap_left .tit {
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+
+.menuWrap .menuWrap_left li a {
+    font-size: 44px;
+    line-height: 1.5;   /* 줄간격 */
+}
+
+.menuWrap .menuWrap_right {
+    float: left;
+    width: 50%;
+}
+
+.menuWrap .menuWrap_right .fam_site {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 100px;
+}
+
+.menuWrap .menuWrap_right .fam_site li:nth-child(1) {
+    font-size: 15px;
+    margin-bottom: 23px;
+}
+
+.menuWrap .menuWrap_right .follow p {
+    font-size: 15px;
+    line-height: 1; /* 위에서 상속받아 윗쪽여백 가진것을 조정하기 위해 라인높이 줌 */
+}
+
+.menuWrap .menuWrap_right .follow a {
+    display: inline-block;  /* display 옆으로 */
+    margin-right: 25px;
+    font-size: 24px;
+}
+
+/*text animation*/
+.menuWrap.on span {  /* 메뉴랩에 .on 클래스가 붙으면 span에 넘치는 부분은 안보이게 함  */
+    overflow: hidden;
+}
+
+.menuWrap.on span b {
+    overflow: hidden;
+    display: block;
+    animation-name: textAni;
+    animation-duration: 1.4s;
+}
+
+@keyframes textAni {
+    0% {
+        opacity: 0;    /*0%일때 투명도 0줘서 보이지 않게 함  */
+    }
+
+    40% {
+        opacity: 0;
+        transform: translateY(100px);  /* 100px 아래로 내려갔다가 올라옴 */
+    }
+}
+
+/*메인메뉴만 타이밍 조절*/
+
+.menuWrap.on .tit li:nth-child(2) span b {
+    animation-duration: 1.5s;
+}
+
+.menuWrap.on .tit li:nth-child(3) span b {
+    animation-duration: 1.6s;
+}
+
+.menuWrap.on .tit li:nth-child(4) span b {
+    animation-duration: 1.7s;
+}
+
+.menuWrap.on .tit li:nth-child(5) span b {
+    animation-duration: 1.8s;
+}
+
+.menuWrap.on .tit li:nth-child(6) span b {
+    animation-duration: 1.9s;
+}
+
+.menuWrap {  /* 평소 메뉴랩 */
+    width: 0;  /* 안보임 */
+    transition: 0s;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0;
+}
+
+.menuWrap.on {  /* 메뉴랩에 on 클래스가 붙으면 */
+    width: 100%;  /* 감춰진거 보이도록 설정 */
+    left: 0;  /* 왼쪽에 위치 */
+    transition: 0.5s;  /* 부드럽게 처리 */
+    opacity: 1;
+    padding: 160px 200px 0 450px;  /* 원래대로 사이즈 */
+}
+
+
+/*header*/
+header {
+    width: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;  
+    height: 100px;
+    line-height: 100px;
+    color: #fff;
+    z-index: 100;  /*값이 높은게 우선순위(-1부터 시작)*/
+    position: fixed;
+    top: 0;
+}
+
+header.on {  /* 헤더에 .on 클래스가 붙을때 */
+    background: rgba(96, 77, 62, 0.3);
+}
+
+header .menuOpen {
+    display: inline-block;
+    position: absolute;
+    top: 50%;  /*top에서 센터로 내려옴*/
+    transform: translateY(-50%);  /*내려와서 시작한 상자를 다시 중간으로 */
+    width: 40px;
+    height: 16px;
+    line-height: 100px;  /*세로로 센터에 위치하도록 함*/
+}
+
+header .menuOpen span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    position: absolute; 
+    top: 0;
+    left: 0;
+}
+
+header .menuOpen span.mid {
+    top: 50%;
+}
+
+header .menuOpen span.bot {
+    top: 100%;
+}
+
+header .book {
+    display: inline-block;
+    float: left;
+    margin-left: 70px;
+    height: 100%;
+    font-size: 25px;
+}
+
+header .langs {
+    float: left;
+    margin-left: 220px;
+    overflow: hidden;
+    width: 150px;
+}
+
+header .langs li {
+    float: left;  /*자식요소에 float주려면 부모 li에 overflow: hidden속성줘야함*/
+    width: 50%;
+}
+
+header .langs li:nth-child(1) {  /* 첫번째 자식 KOR  */
+    font-weight: bold;
+}
+
+header .langs li:nth-child(2) {  /* 두번째 자식 ENG  */
+    color: #ddd;
+}
+
+header .langs li a {
+    display: block;
+    padding: 0 30px;
+    box-sizing: border-box;  /* ul Langs 클래스에 150px안에 속해있는 a태그의 padding 30px이 그안에 포함되도록 함   */
+    text-transform: uppercase;
+}
+
+header .right {  /* 통합예약실  */
+    float: right;
+}
+
+header .right li {  /* 헤더 오른쪽 파트   */
+    float: left;
+    margin-right: 55px;
+}
+
+header .right li:nth-child(2) {  /* 젤 마지막 아이템은 오른쪽에 붙게만듬   */
+    margin-right: 0;
+}
+
+header .right li p {  /* 통합예약실 글자 간격 조정  */
+    letter-spacing: 1px;
+}
+
+header .right li .logo {
+    width: 150px;
+    height: 100px;
+}
+
+header .right li .logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;   /* a태그안에 이미지 위치 조정  */
+}
+
+header .right li .logo a img {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+header .right li .logo a img:nth-child(2) {  /* 2번째 이미지 투명하게 감춤  */
+    opacity: 0;
+}
+
+/*visual*/
+.visual {
+    color: #fff;
+}
+
+.visual .slide li {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.visual .slide li img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;  /* slide안에 이미지 가득 채움  */
+}
+
+/*visual .mainText*/
+.visual .slide .mainText {
+    position: absolute;
+    top: 35%;
+    right: 18%;
+    width: 25%;
+}
+
+.visual .slide .mainText strong {
+    display: block;
+    font-size: 50px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    letter-spacing: 2px;    /* 자간 */
+    opacity: 1;
+}
+
+.visual .slide .mainText>p {  /* .mainText에 바로 있는 P태그만   */
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1.8;  /* 줄간격  */
+    margin-bottom: 70px;
+}
+
+.visual .slide .mainText .num {  /* 0이 오는 숫자부분  */
+    position: relative;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.visual .slide .mainText .num span {  /* 바뀌는 숫자부분  */
+    position: absolute;
+    top: -10px;         /* 애니메이션 끝났을때 상황임  */
+    display: inline-block;
+    padding: 10px 4px;
+    opacity: 0;     /* 보이지 않다가 나타남  */
+}
+
+.visual .slide .mainText .message {
+    font-size: 26px;
+    line-height: 1.2;
+}
+
+/*비주얼 공통 하단 메뉴*/
+.visual .menu {
+    position: absolute;
+    left: 4%;
+    bottom: 7%;
+    font-size: 21px;
+    padding-bottom: 7px;
+    overflow: hidden;  /* 자식요소 float 설정하기위함(li)  */
+}
+
+.visual .menu:after {  /* 움직이는 바  */
+    content: '';
+    width: 100%;    /* 애니메이션 진행된 결과의 상태  */
+    height: 4px;
+    background: #fff;
+    position: absolute; /* visual menu 기준으로 자리 잡음  */
+    left: 0;
+    bottom: 0;
+    animation: bar 4.5s infinite;  /* 애니메이션  4.5초 무한 반복  */
+}
+
+@keyframes bar {  /* 애니메이션 네임 bar  */
+    0% {
+        width: 0%;  /* 애니메이션 0%일때 width 0%임  */
+    }
+}
+
+.visual .menu li {
+    float: left;
+    padding-right: 20px;
+}
+
+.visual .menu li:nth-child(2) {
+    padding-right: 130px;
+}
+
+.visual .menu li:nth-child(3) {
+    padding-right: 0;
+}
+
+.visual .menu li span i {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.visual .menu li:nth-child(2) span i {  /* 두번째 리스트 check out 부분  */
+    margin-right: 22px;
+}
+
+.visual .menu li p {
+    font-size: 28px;
+}
+
+/*animation*/
+@keyframes trans {      /* 화면 효과  */
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-15px);  /* 글자가 위로 사라지는 느낌 주기 위해서  */
+    }
+}
+
+.visual .slide .slick-active .mainText .num span {  /* slick-adtive 상태에서 진행되게 하려고 넣음   */
+    animation-name: trans;   /* @keyframes에 같은 이름 애니메이션 실행함 */
+    animation-duration: 4.5s;
+}
+
+@keyframes opa {
+    0% {
+        opacity: 0;
+    }
+}
+
+.visual .slide .slick-active .mainText strong {
+    animation-name: opa;
+    animation-duration: 3s;
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0;
+        transform: translateY(10px); /* Y축 10px 아래에서 올라옴 */
+    }
+}
+
+.visual .slide .slick-active .mainText>p {
+    animation-name: slide-up;
+    animation-duration: 1.5s;
+}
+
+@keyframes scaleani {  /* 화면에 그림 fade in 효과  */
+    0% {
+        transform: scale(1.1);  /* 스케일이 1.1이었다가 1로  */
+    }
+}
+
+.visual .slide .slick-active li img {
+    animation-name: scaleani;
+    animation-duration: 4.5s;
+}
+
+/*section.introduce*/
+.introduce {
+    width: 88%;  /*  좌우에 공백 만들기위함 */
+    margin: 130px auto 0;
+}
+
+.introduce .title {
+    font-size: 32px;
+    line-height: 1.6;  /* 줄간격  */
+    margin-bottom: 100px;
+}
+
+.introduce .roomInfo {
+    width: 100%;  /* introduce의 88% 내에서 100%를 채움  */
+    height: 884px;
+    position: relative;
+}
+
+.introduce .roomInfo .tab {
+    width: 380px;
+    text-transform: uppercase;  /* 대문자  */
+    margin-bottom: 40PX;
+    overflow: hidden;  /* 자식요소 float 주기 위해서 부모요소 설정  */
+}
+
+.introduce .roomInfo .tab li {
+    float: left; 
+    width: 40%;
+    margin-right: 3%;
+}
+
+.introduce .roomInfo .tab li:nth-child(2) {
+    margin-right: 0;
+}
+
+.introduce .roomInfo .tab li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+
+.introduce .roomInfo .tab li.on {
+    color: #a68164;
+}
+
+/*글자갯수만큼 바가 생기기위해 span으로 감쌈*/
+.introduce .roomInfo .tab li a span {
+    display: inline-block;  /* span기준으로 하는거라서  */
+    position: relative;
+    padding: 5px 0;
+    box-sizing: border-box;
+}
+
+.introduce .roomInfo .tab li a span:after {
+    content: '';
+    position: absolute; /* span기준으로 하는거라서  */
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px; /* 선 굵기  */
+    background: #a68164;
+    transition: all 0.5s;   /* after넘어갈때 0.5초 transition 적용 */
+}
+
+.introduce .roomInfo .tab li a span:hover:after {   /* hover시에 적용  */
+    width: 100%;
+}
+
+/*.introduce tabBox*/
+.introduce .roomInfo .tabBox {
+    width: 100%;
+    position: absolute;   /* roomInfo 기준으로 자리 잡음 */
+    left: 0;
+    top: 11%;
+    display: none;
+}
+
+.introduce .roomInfo .tabBox.on {
+    display: block;
+}
+
+.introduce .roomInfo .tabBox .deluxe {
+    overflow: hidden;
+    width: 100%;
+}
+
+.introduce .roomInfo .tabBox .deluxe .photo {
+    float: left;
+    width: 60%;
+    position: relative;
+}
+
+.introduce .roomInfo .tabBox .deluxe .photo img {
+    width: 100%;         /* 높이 안주면 auto로 들어감, 높이 임의로 주면 비율깨질수있음  */
+}
+
+.introduce .roomInfo .tabBox .deluxe .photo .showBox {
+    width: 25%;
+    position: absolute;   /* photo 기준으로 배치  */
+    left: 8%;
+    bottom: 18%;
+    color: #fff;
+    letter-spacing: 1.5px;
+}
+
+.introduce .roomInfo .tabBox .deluxe .photo .showBox .name {
+    padding-bottom: 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(235, 235, 235, 0.33);
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.introduce .roomInfo .tabBox .deluxe .photo .showBox .name:after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    animation: bar 4.4s;
+}
+
+.introduce .roomInfo .tabBox .deluxe .photo .showBox .btn {
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.introduce .roomInfo .tabBox .deluxe .txtinfo {
+    float: right;
+    width: 40%;
+    text-align: center;
+    margin-top: 180px;
+}
+
+.introduce .roomInfo .tabBox .deluxe .txtinfo .titBox {
+    margin-bottom: 120px;
+}
+
+.introduce .roomInfo .tabBox .deluxe .txtinfo .titBox h3 {
+    font-size: 35px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+.introduce .roomInfo .tabBox .deluxe .txtinfo .titBox p {
+    font-size: 17px;
+    color: #604d3e;
+}
+
+.introduce .roomInfo .tabBox .deluxe .txtinfo .inner_detail li {
+    margin-bottom: 50px;
+}
+
+.introduce .roomInfo .tabBox .deluxe .txtinfo .inner_detail li span {
+    display: block;
+    margin-bottom: 20px;
+    color: #a68164;
+}
+
+.introduce .roomInfo .tabBox .deluxe .txtinfo .inner_detail li p {
+    font-size: 17px;
+}
+
+
+/*introduce .motion*/
+@keyframes slide-up2 {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0;
+        transform: translateY(40px);    /*세로축으로 40px아래 내려갔다가 올라오면서 적용됨  */
+    }
+}
+
+.introduce .title.motion {   /* 애니메이션 적용 위함 -스크롤할떄 */
+    animation-name: slide-up2;
+    animation-duration: 1.2s;
+}
+
+.introduce .roomInfo.motion {
+    animation-name: slide-up2;
+    animation-duration: 0.8s;
+}
+
+/* .motion 걸려있으므로 애니메이션 적용될때 css임 */
+.introduce .roomInfo.motion .tabBox .deluxe .photo .showBox .name {
+    animation-name: slide-up2;
+    animation-duration: 2s;
+}
+
+.introduce .roomInfo.motion .tabBox .deluxe .txtinfo .titBox h3 {
+    animation-name: slide-up2;
+    animation-duration: 1.4s;
+}
+
+.introduce .roomInfo.motion .tabBox .deluxe .txtinfo .titBox p {
+    animation-name: slide-up2;
+    animation-duration: 1.6s;
+}
+
+.introduce .roomInfo .tabBox .deluxe .txtinfo .inner_detail li {
+    animation-name: slide-up2;
+    animation-duration: 2s;
+    animation-delay: 0.2s;
+}
+
+.introduce .roomInfo .tabBox .deluxe .txtinfo .inner_detail li:nth-child(2) {
+    animation-duration: 2.2s;
+    animation-delay: 0.3s;
+}
+
+.introduce .roomInfo .tabBox .deluxe .txtinfo .inner_detail li:nth-child(3) {
+    animation-duration: 2.4s;
+    animation-delay: 0.4s;
+}
+
+/*section.offer*/
+.offer {
+    width: 87%;
+    margin: 200px auto 100px;
+}
+
+.offer h2 {
+    font-size: 30px;
+    line-height: 1.7;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.offer .findBtn {  /* Find out more 부분 */
+    display: block;
+    font-size: 15px;
+    color: #a68164;
+    margin-bottom: 35px;
+}
+
+.offer .new {
+    width: 100%;
+    overflow: hidden;  /* 자식요소에 float주기 위함 */
+}
+
+.offer .new li {
+    float: left;
+    width: 23.5%;
+    margin-right: 2%;
+}
+
+.offer .new li:nth-child(4) {
+    margin-right: 0;  /* 마지막 요소의 오른쪽 마진 제거 */
+}
+
+.offer .new li p.img {
+    width: 100%;  /* list안에서 100%로 채움 */
+    margin-bottom: 35px; 
+    overflow: hidden;  /* 이미지 커져서 넘치는 부분 안보이게 함  */
+}
+
+.offer .new li p.img a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.offer .new li p.img a:hover img { /* 이미지 마우스 오버시 확대  */
+    transform: scale(1.2);
+    transition: all 0.5s;  /* 이미지 확대시 부드럽게 진행되도록 함 */
+}
+
+.offer .new li p.img a img {
+    width: 100%;
+    transition: all 0.3s;  /* 이미지 확대시 부드럽게 진행되도록 함 */
+}
+
+.offer .new li span {
+    display: block;  /* span이 인라인 요소이므로 속성변경 */
+    margin-bottom: 20px;
+}
+
+.offer .new li h3 {
+    font-size: 20px;
+    letter-spacing: -1px;  /* 자간간격 */
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.offer .new li .hashTag {
+    font-size: 15px;
+    letter-spacing: -1px;
+    color: #a68164;
+    height: 100px;  /* 4개 hashTag 내용의 길이에 상관없도록 높이 설정 */
+}
+
+.offer .new li>a {  /* > 활용해서 li 바로아래 a 선택 */
+    display: inline-block;  /* 밑줄효과 낼껀데 이때 텍스트 영역만큼만 효과주기위함, 만약 block으로하면 한 라인 전체 다 잡힘  */
+    font-size: 15px;
+    color: #a68164;
+    position: relative;  /* 이거 기준으로 밑줄 그을것임 */
+    padding: 5px 0;
+}
+
+.offer .new li>a:after {  /* 밑줄  */
+    content: '';
+    width: 0;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #a68164;
+    transition: all 0.5s;
+}
+
+.offer .new li>a:hover:after {
+    width: 100%;
+}
+
+/*section.offer .motion*/
+.offer h2.motion {
+    animation-name: slide-up2;
+    animation-duration: 0.8s;
+}
+
+.offer .findBtn.motion {
+    animation-name: slide-up2;
+    animation-duration: 1.2s;
+}
+
+.offer .new li.motion {
+    animation-name: slide-up2;
+    animation-duration: 1.2s;
+}
+
+.offer .new li.motion:nth-child(2) {
+    animation-duration: 1.4s;
+}
+
+.offer .new li.motion:nth-child(3) {
+    animation-duration: 1.6s;
+}
+
+.offer .new li.motion:nth-child(4) {
+    animation-duration: 1.8s;
+}
+
+/*section.intro_dining*/
+.intro_dining {
+    width: 100%; 
+    overflow: hidden;  /* 내부에 그림/텍스트 float 속성 주기위함  */
+    background: #d7cdc5;
+    height: 900px;
+}
+
+.intro_dining .slide2 {
+    float: left;
+    width: 50%;
+}
+
+.intro_dining .slide2 li {
+    width: 100%;    /* slide 50% 내에서 꽉 채움 */
+    position: relative;   /* list를 중심으로 해서  */
+}
+
+.intro_dining .slide2 li img {
+    width: 100%;   /* list 내 이미지도 영역에 꽉 채움 */
+}
+
+.intro_dining .slide2 li .slide_txt {
+    position: absolute;   /* li을 기준으로 해서 바닥에 글씨 오도록 조절 */
+    left: 8%;
+    bottom: 19%;
+    color: #fff;
+}
+
+.intro_dining .slide2 li .slide_txt h3 {
+    font-size: 35px;
+    font-weight: normal;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.intro_dining .slide2 li .slide_txt p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 45px;
+}
+
+.intro_dining .slide2 li .slide_txt a {
+    display: block;
+    width: 150px;
+    background: #a68164;
+    padding: 12px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;   /* 버튼에 글자 보이게 */
+}
+
+.intro_dining .slide2 li .slide_txt a:after {  /* 버튼에 색 차오르기 */
+    content: '';
+    width: 100%;
+    height: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #604a3e;
+}
+
+.intro_dining .slide2 li .slide_txt a:hover:after {
+    height: 100%;
+    transition: height 0.5s ease;
+    z-index: -1;  /* 색깔 뒤로 가게 함 - 글자 보이게 해야하므로 */
+}
+
+.intro_dining .intro_diningTxt {
+    float: left;  /* 여기서는 right 줘도 상관없음 */
+    width: 50%;
+    padding: 80px 0 0 80px;
+    box-sizing: border-box;
+}
+
+.intro_dining .intro_diningTxt h3 {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.7;
+    margin-bottom: 520px;
+}
+
+.intro_dining .intro_diningTxt p {
+    font-size: 15px;
+    color: #a68164;
+    line-height: 1.6;
+}
+
+/*intro_dining .slick-active*/
+.intro_dining .slide2 .slick-active .slide_txt h3 {  /* 슬라이드 드래그 할떄  */
+    animation-name: slide-up2;
+    animation-duration: 0.6s;
+}
+
+.intro_dining .slide2 .slick-active .slide_txt p {
+    animation-name: slide-up2;
+    animation-duration: 1.0s;
+}
+
+.intro_dining .slide2 .slick-active .slide_txt a {
+    animation-name: slide-up2;
+    animation-duration: 1.2s;
+}
+
+.intro_dining .intro_diningTxt.motion h3 {
+    animation-name: slide-up2;
+    animation-duration: 2s;
+}
+
+/*section.greetings*/
+.greetings {
+    width: 100%;
+    text-align: center;
+    margin: 100px 0 100px;
+}
+
+.greetings h2 {
+    font-size: 17px;
+    font-weight: normal;
+    color: #a68164;
+    margin-bottom: 60px;
+}
+
+.greetings h3 {
+    font-size: 32px;
+    line-height: 1.6;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+.greetings a {  /* view more 버튼 */
+    display: block;
+    width: 150px;
+    margin: auto;
+    text-align: center;
+    border: 1px solid #a68164;
+    padding: 12px 20px;
+}
+
+/*section.news_notice*/
+.news_notice {
+    width: 100%;
+    border-top: 1px solid #d3cdb7;  /* 위에 선 */
+    overflow: hidden;  /* float 속성 주기위함 - 감싸주기  */
+}
+
+.news_notice .title_wrap {
+    width: 7%;    
+    height: 395px;   /* 높이 설정 - 세로정렬위함 */
+    float: left;
+    border-right: 1px solid #e3dbd7;  /* 보더 선 */
+    box-sizing: border-box;
+    position: relative;  /* 이 부분 기준으로 글자 세로정렬 */
+}
+
+.news_notice .title_wrap .inner {
+    font-size: 20px;
+    text-align: center;
+    position: absolute;  /* title_wrap 기준으로 글자 정렬 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  /* 글자 시작 점을 가로세로 50% 올림 */
+}
+
+.news_notice .title_wrap .inner .news_title {
+    transform: rotate(-90deg);   /* 글자를 세로로 눞임 */
+    width: 200px;
+}
+
+.news_notice .title_wrap .inner .news_title a {  /* find out more 부분 */
+    display: block;
+    color: #604d3e;
+    font-size: 16px;
+}
+
+.news_notice .notice_list {
+    width: 90%;
+    float: left;
+    padding-top: 98px;
+    overflow: hidden;  /* float 속성 자식에 주기위함 */
+}
+
+.news_notice .notice_list li {  
+    float: left;  /* 옆으로 정렬 */
+    width: 33.3333%;  /* 각각의 list를 3등분 */
+    padding-right: 50px;   /* 여백  */
+    box-sizing: border-box;  /* 바로 위 여백준게 box size에 포함될 수 있도록 함 */
+}
+
+.news_notice .notice_list li .data {
+    display: block;   /* 날짜 */
+    text-align: right;
+    font-size: 38px;
+}
+
+.news_notice .notice_list li .textBox {
+    width: 80%;    /* 박스 내 80%만 차지하도록 설정 */
+    float: right;  /* 오른쪽정렬 */
+}
+
+.news_notice .notice_list li .textBox strong {
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    color: #1d212a;
+    margin-bottom: 50px;
+}
+
+.news_notice .notice_list li .textBox .list_txt {
+    font-size: 14px;
+    color: #604d3e;
+    height: 115px;  /* 내용길이 상관없이 다음줄에 view more 버튼 위치 동일하게 하기 위해 높이 설정  */
+}
+
+.news_notice .notice_list li .textBox a.more {
+    display: block;
+    width: 80px;  /* view more 호버시 라인 생기게 하기 위해서  */
+    font-size: 15px;
+    padding: 5px 0;   /* 아래에 올 view more 조금 떨어뜨림 */
+    position: relative;   /* 밑줄 위치 잡기 위한 고정 위치 */
+    margin-bottom: 50px;
+    color: #a68164;
+}
+
+.news_notice .notice_list li .textBox a.more:after {  /* 가상컨텐츠 */
+    content: '';
+    width: 0;   
+    height: 1px;
+    background: #a68164;
+    position: absolute;  
+    left: 0;
+    bottom: 0;
+    transition: all 0.5s;  /* smooth하게 */
+}
+
+.news_notice .notice_list li .textBox a.more:hover:after {
+    width: 100%;    /* 0에서 100까지 width가 올라가는 셈.. */
+}
+
+/*motion*/
+/* list.motion 붙어있음 - 스크롤 했을때 animate 클래스 찾아서 활성화시킴 */
+.news_notice .notice_list.motion li {
+    animation-name: slide-up2;
+    animation-duration: 0.8s;
+}
+
+.news_notice .notice_list.motion li:nth-child(2) {
+    animation-duration: 1s;
+}
+
+.news_notice .notice_list.motion li:nth-child(3) {
+    animation-duration: 1.2s;
+}
+
+.news_notice .notice_list.motion li:nth-child(4) {
+    animation-duration: 1.4s;
+}
+
+/*section.club_banner*/
+.club_banner {
+    width: 100%;
+    /* 상위폴더 가서 images찾앙서 그밑에 club.jpg, 반복없음  cover넣으면 컨텐츠 비율 유지*/
+    background: url(../images/club.jpg)no-repeat center/cover;
+}
+
+.club_banner .inner {
+    width: 78%;
+    margin: auto;
+    padding: 200px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.club_banner .inner h3 {
+    font-size: 38px;
+    font-weight: normal;
+    margin-bottom: 50px;
+}
+
+.club_banner .inner a.more {
+    display: block;  /* hover 적용 위해서 block으로 변경 */
+    width: 80px;
+    margin: auto;
+    padding: 5px 0;  
+    font-size: 15px;
+    position: relative;  /* 가상컨텐츠에 라인 생성위함 */
+}
+
+.club_banner .inner a.more:after {
+    content: '';
+    width: 0;
+    height: 1px;
+    background: #a68164;
+    position: absolute;   /* view more block 기준으로 위치 */
+    left: 0;
+    bottom: 0;
+    transition: all 0.5s;
+}
+
+.club_banner .inner a.more:hover:after {
+    width: 100%;    
+}
+
+/*motion*/
+.club_banner .inner.motion h3 {   /* .motion이 붙을때 */
+    animation-name: slide-up2;
+    animation-duration: 0.8s;
+}
+
+.club_banner .inner.motion a.more {
+    animation-name: slide-up2;
+    animation-duration: 1s;
+}
+
+/*footer*/
+footer {
+    width: 100%;
+    background: #161e27;
+}
+
+footer .foot_inner {
+    width: 87%;   /* 전체 footer 너비 */
+    margin: auto;
+    padding: 80px 0;  /* 상하 패딩 설정 */
+    color: #fff;
+    overflow: hidden;   /* 자식요소 float 설정 위함 */
+    position: relative;   /* fam_site_wrap 조정*/
+}
+
+footer .foot_inner .logo {
+    float: left;
+    width: 16%;
+}
+
+footer .foot_inner .contact_area {
+    float: left;
+    width: 68%;
+}
+
+footer .foot_inner .contact_area li {
+    float: left;
+    width: 18%;
+}
+
+footer .foot_inner .contact_area li:nth-child(1) {
+    width: 34%;
+}
+
+footer .foot_inner .contact_area li:nth-child(3) {
+    width: 24%;
+}
+
+footer .foot_inner .contact_area li p {
+    margin-bottom: 5px;
+}
+
+footer .foot_inner .contact_area li p a {
+    font-size: 14px;
+}
+
+footer .foot_inner .contact_area li p.adrress {  /* p태그중 class name이 address */
+    font-size: 18px;
+}
+
+footer .foot_inner .contact_area li p span {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+footer .foot_inner .contact_area li p.mail,
+footer .foot_inner .contact_area li p.tel {
+    letter-spacing: 1px;  /* 자간 조정 */
+}
+
+footer .foot_inner .footer_right {
+    float: right;
+    width: 16%;
+}
+
+footer .foot_inner .footer_right .icon li {
+    float: right;   
+    padding-left: 40px;  /* 패딩설정 */
+    box-sizing: border-box; /*패딩이 박스 사이즈 안에 포함되도록 함 */
+}
+
+footer .foot_inner .footer_right .icon li:nth-child(3) {
+    padding-left: 0;  /* 마지막 요소의 왼쪽 패딩 제거*/
+}
+
+footer .foot_inner .footer_right .icon li:nth-child(3) img {
+    width: 70%;
+}
+
+footer .foot_inner .footer_right .icon li a {
+    font-size: 20px;  /* 크기조정 */
+}
+
+footer .foot_inner .footer_right .fam_site_wrap {
+    width: 170px;
+    position: absolute;  /* foot_inner에 관련 */
+    right: 0;
+    bottom: 30px;  
+    font-size: 13px;
+}
+
+footer .foot_inner .footer_right .fam_site_wrap .txt_wrap {
+    width: 100%;
+    height: 33px;
+    margin-bottom: 10px;
+}
+
+footer .foot_inner .footer_right .fam_site_wrap .txt_wrap .btn_fam {  /* family site부분 */
+    display: block;
+    width: 100%;
+    padding: 5px 15px 5px 20px;
+    box-sizing: border-box;
+    text-align: left;
+    background: #161e27;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+footer .foot_inner .footer_right .fam_site_wrap .txt_wrap .btn_fam .fma_sit_tit {
+    margin-right: 55px;  /* 아래방향 화살표 */
+}
+
+
+
+footer .foot_inner .footer_right .fam_site_wrap .item_wrap {
+    display: none;  /* default설정 안보이게 함 */
+    width: 100%;
+    height: 156px;
+    padding: 18px 20px 16px;  /* 글자가 안에 들어가도록 패딩 설정 */
+    box-sizing: border-box;  /* 글자 넘치지 않게 함?!? */
+    position: absolute;  /*footer_inner 기준으로 position 설정 */
+    left: 0;
+    bottom: 58px;  /* copyright 부분과 떨어지게 함 */
+    background: #fff;
+    overflow: scroll;  /* 메뉴 많이 생겼을 경우 스크롤 생성 */
+}
+
+footer .foot_inner .footer_right .fam_site_wrap .item_wrap a {
+    display: block;    /* a는 인라인 요소이므로 속성을 block으로 변경 */
+    width: 100%;
+    padding: 6px;  /* 패딩*/
+    box-sizing: border-box;   /* 패딩 줬으니까 패딩이 box size에 들어가도록 설정 */
+    transition: 0.4s color ease;   /* 컬러 트랜지션? */
+    color: #1d212a;
+}
+
+footer .foot_inner .footer_right .fam_site_wrap .copy { /* copyright부분 */
+    font-size: 11px;
+    color: #888;
+}
